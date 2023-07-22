@@ -11,7 +11,7 @@ pip install -r requirements.txt
 ```
 
 
-## Modal deployment
+## [SERVER] Modal deployment
 
 Getting started
 The nicest thing about all of this is that you don’t have to set up any infrastructure. Just:
@@ -32,7 +32,7 @@ To deploy this as a permanent app, run the command
 modal deploy fastapi_app.py
 ```
 
-## Streamlit app
+## [CLIENT] Streamlit app
 
 ```
 streamlit run st_app.py

@@ -1,12 +1,12 @@
-# modal-fastapi-openai-streamlit
+# AI-Marketing-Campaign-Generator
 
 This repository contains an AI-powered marketing campaign generator. The application uses [OpenAI's GPT-3.5 model](https://platform.openai.com/docs/models) to generate creative marketing campaign suggestions based on user prompts. The backend is built using [FastAPI](https://fastapi.tiangolo.com/) and interacts with OpenAI's API, while the frontend is a [Streamlit](https://streamlit.io/) application that provides an interactive user interface. The applications are designed for containerized deployment using the [Modal](https://modal.com/) platform. Users simply input their brand name and a short description, and the system will generate a unique marketing campaign for them.
 
 ## Installation
 
 ```
-conda create --name modal-fastapi-openai-streamlit -c conda-forge python=3.10
-conda activate modal-fastapi-openai-streamlit
+conda create --name ai-marketing-campaign-generator -c conda-forge python=3.10
+conda activate ai-marketing-campaign-generator
 pip install -r requirements.txt
 ```
 
@@ -18,7 +18,7 @@ The nicest thing about all of this is that you don’t have to set up any infras
 
 - Create an account at modal.com
 - Install the modal-client package
-- Set up a token
+- Set up a token using `modal token new`
 …and you can start running jobs right away.
 
 ```

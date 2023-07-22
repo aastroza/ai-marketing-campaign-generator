@@ -1,5 +1,5 @@
 # modal-fastapi-openai-streamlit
-Modal.com deployment backend, Streamlit app
+[Modal](https://modal.com/) backend, [Streamlit](https://streamlit.io/) app
 
 
 ## Installation
@@ -30,4 +30,10 @@ To deploy this as a permanent app, run the command
 
 ```
 modal deploy fastapi_app.py
+```
+
+## Streamlit app
+
+```
+streamlit run st_app.py
 ```

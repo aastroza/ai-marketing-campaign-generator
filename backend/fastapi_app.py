@@ -64,7 +64,7 @@ async def ping():
 
 @app.post("/campaign")
 async def handle_campaign(item: Item):
-    return get_response_openai(item.prompt)
+    return {"campaign_text" : get_response_openai(item.prompt)}
 
 @stub.function(
     image=image,

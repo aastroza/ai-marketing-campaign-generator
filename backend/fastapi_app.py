@@ -14,7 +14,6 @@ from modal import Image, Stub, asgi_app, Secret
 
 # Set up the Modal deployment
 stub = Stub("example-fastapi-app")
-image = Image.debian_slim()
 
 # Define the image for deployment, installing necessary libraries
 image = (

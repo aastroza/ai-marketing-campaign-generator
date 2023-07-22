@@ -12,6 +12,15 @@ The entire application is containerized for deployment using the Modal platform,
 
 This demo project serves as a practical example of building and deploying a data product as part of the course. It illustrates the application of the concepts and technologies taught in the program in a real-world scenario.
 
+## Getting Started
+
+Before you begin to run this project, there are a few prerequisites you will need to have in place:
+
+- OpenAI API Key: In order to interact with OpenAI's API, you will need to have an API key. You can obtain this by creating an account on OpenAI's website and following their [instructions to generate an API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key).
+
+- Modal Account: The application is containerized for deployment using the Modal platform. Visit the [Modal](https://modal.com/signup) website to sign up for an account if you don't have one already.
+
+- Streamlit Account (Optional): While you can run Streamlit apps locally without an account, having a Streamlit account allows you to deploy and share your apps, which can be useful for demonstrating your project to others. If you wish to use this feature, [sign up for a Streamlit account](https://share.streamlit.io/signup).
 
 ## Installation
 
@@ -30,6 +39,10 @@ The nicest thing about all of this is that you don’t have to set up any infras
 - Create an account at modal.com
 - Install the modal-client package
 - Set up a token using `modal token new`
+- Create a Secret `openai` to add your OpenAI API Key `OPENAI_API_KEY` to your Secrets dictionary using the [modal dashboard](https://modal.com/secrets).
+
+![modal secret](modal_secret.PNG)
+
 …and you can start running jobs right away.
 
 ```

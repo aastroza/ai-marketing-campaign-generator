@@ -30,7 +30,6 @@ conda activate ai-marketing-campaign-generator
 pip install -r requirements.txt
 ```
 
-
 ## [SERVER] Modal deployment
 
 Getting started
@@ -55,6 +54,18 @@ To deploy this as a permanent app, run the command
 ```
 modal deploy fastapi_app.py
 ```
+
+## Updating the Endpoint URL
+
+After deploying your FastAPI application on Modal, you will receive a unique URL for your application. This URL is the endpoint that the Streamlit application will send requests to.
+
+In the `st_app.py` file, you'll find a line of code that defines the endpoint URL:
+
+```python
+endpoint = "https://aastroza--example-fastapi-app-fastapi-app-dev.modal.run/campaign"
+```
+
+You must replace this URL with the URL you received after your Modal deployment. This ensures that the Streamlit application communicates with your deployed FastAPI application correctly.
 
 ## [CLIENT] Streamlit app
 

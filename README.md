@@ -2,6 +2,17 @@
 
 This repository contains an AI-powered marketing campaign generator. The application uses [OpenAI's GPT-3.5 model](https://platform.openai.com/docs/models) to generate creative marketing campaign suggestions based on user prompts. The backend is built using [FastAPI](https://fastapi.tiangolo.com/) and interacts with OpenAI's API, while the frontend is a [Streamlit](https://streamlit.io/) application that provides an interactive user interface. The applications are designed for containerized deployment using the [Modal](https://modal.com/) platform. Users simply input their brand name and a short description, and the system will generate a unique marketing campaign for them.
 
+## Notes
+
+This repository hosts a demo project for the "Desarrollo de Producto de Datos" course of the Data Science Master's program at Universidad del Desarrollo. The purpose of this project is to showcase the integration of various cutting-edge technologies including Modal, Streamlit, FastAPI, and OpenAI API.
+
+The application is an AI-powered marketing campaign generator. It employs OpenAI's GPT-3 model to generate creative marketing campaign suggestions based on user inputs. The backend of the application is developed using FastAPI, a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. The frontend is a Streamlit application that provides a user-friendly interface for users to input their brand name and description and receive AI-generated marketing campaigns.
+
+The entire application is containerized for deployment using the Modal platform, demonstrating an end-to-end data product development cycle, from AI model integration to user interface design and deployment.
+
+This demo project serves as a practical example of building and deploying a data product as part of the course. It illustrates the application of the concepts and technologies taught in the program in a real-world scenario.
+
+
 ## Installation
 
 ```
@@ -37,3 +48,4 @@ modal deploy fastapi_app.py
 ```
 streamlit run st_app.py
 ```
+

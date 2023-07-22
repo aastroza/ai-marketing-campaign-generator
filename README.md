@@ -61,4 +61,3 @@ modal deploy fastapi_app.py
 ```
 streamlit run st_app.py
 ```
-

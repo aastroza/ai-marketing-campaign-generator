@@ -3,3 +3,4 @@ openai
 pydantic
 modal
 streamlit
+python-dotenv

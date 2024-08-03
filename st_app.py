@@ -4,7 +4,7 @@ import json
 import requests
 
 # Define the endpoint of the FastAPI application
-endpoint = "https://aastroza--example-fastapi-app-fastapi-app-dev.modal.run/campaign"
+endpoint = "https://aastroza--example-fastapi-app-fastapi-app.modal.run/campaign"
 
 # Set the title of the Streamlit application
 st.title("Marketing Campaign Generator 🔥")

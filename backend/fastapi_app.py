@@ -5,15 +5,18 @@
 
 # Import the required libraries
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import openai
-import os
-import sys
 from pydantic import BaseModel
-from modal import Image, Stub, asgi_app, Secret
+from modal import App, Image, asgi_app, Secret
+from openai import OpenAI
+
+from dotenv import load_dotenv
+load_dotenv()
+
+client = OpenAI()
 
 # Set up the Modal deployment
-stub = Stub("example-fastapi-app")
+web_app = FastAPI()
+app = App("example-fastapi-app")
 
 # Define the image for deployment, installing necessary libraries
 image = (
@@ -21,22 +24,9 @@ image = (
     .pip_install(
         "fastapi",
         "openai",
-        "pydantic"
+        "pydantic",
+        "python-dotenv",
     )
-)
-
-# Create a FastAPI application
-app = FastAPI(
-    title="Simple ChatGPT API",
-)
-
-# Add CORS middleware to the application to handle Cross Origin Resource Sharing
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
 )
 
 # Define a Pydantic model for the data the API will receive
@@ -47,12 +37,9 @@ class Item(BaseModel):
 def get_response_openai(prompt):
     try:
         prompt = prompt
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            n=1,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            temperature=0.7,
             messages=[
                 {"role": "system", "content": "You are an expert creative marketer. Create a campaign for the brand the user enters. Respond in markdwon format."},
                 {"role": "user", "content": prompt},
@@ -61,31 +48,25 @@ def get_response_openai(prompt):
     except Exception as e:
         print("Error in creating campaigns from openAI:", str(e))
         return 503
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content
 
 # Define a route that will respond to a GET request with a simple message
-@app.get("/ping")
+@web_app.get("/ping")
 async def ping():
     return "pong"
 
 # Define a route that will respond to a POST request with a marketing campaign based on the received data
-@app.post("/campaign")
+@web_app.post("/campaign")
 async def handle_campaign(item: Item):
     return {"campaign_text" : get_response_openai(item.prompt)}
 
 # Set up the deployment details for the Modal platform
-@stub.function(
-    image=image,
-    secret=Secret.from_name("openai"),
-    keep_warm=1
-)
-
-# Define the ASGI application for deployment
+@app.function(image=image, secrets=[Secret.from_dotenv()])
 @asgi_app()
 def fastapi_app():
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    return app
+    return web_app
+
 
 # Deploy the application if this script is run directly
 if __name__ == "__main__":
-    stub.deploy("app")
+    app.deploy("webapp")

@@ -38,21 +38,17 @@ The nicest thing about all of this is that you don’t have to set up any infras
 - Create an account at modal.com
 - Install the modal-client package
 - Set up a token using `modal token new`
-- Create a Secret `openai` to add your OpenAI API Key `OPENAI_API_KEY` to your Secrets dictionary using the [Modal dashboard](https://modal.com/secrets).
-
-![modal secret](modal_secret.PNG)
 
 …and you can start running jobs right away.
 
 ```
-cd backend
-modal serve fastapi_app.py
+modal serve .\backend\fastapi_app.py
 ```
 
 To deploy this as a permanent app, run the command
 
 ```
-modal deploy fastapi_app.py
+modal deploy .\backend\fastapi_app.py
 ```
 
 ## Updating the Endpoint URL
@@ -62,7 +58,7 @@ After deploying your FastAPI application on Modal, you will receive a unique URL
 In the `st_app.py` file, you'll find a line of code that defines the endpoint URL:
 
 ```python
-endpoint = "https://aastroza--example-fastapi-app-fastapi-app-dev.modal.run/campaign"
+endpoint = "https://aastroza--example-fastapi-app-fastapi-app.modal.run/campaign"
 ```
 
 You must replace this URL with the URL you received after your Modal deployment. This ensures that the Streamlit application communicates with your deployed FastAPI application correctly.

@@ -12,12 +12,26 @@ st.title("Marketing Campaign Generator 🔥")
 # Create a text area for the user to input their brand name and a short description of their brand
 prompt = st.text_area("Enter your brand name and a short description of your brand. We will generate a marketing campaign for you 🚀.")
 
-# Prepare the input data for the API request
+
+
+# Preparar el input para la API
 input = {"prompt": prompt}
 
-# If the "Generate" button is clicked, send a request to the FastAPI application and display the response
+# Si se presiona el botón, enviar la solicitud y mostrar la respuesta
 if st.button("Generate"):
-    res = requests.post(url=endpoint, data=json.dumps(input))
-    res_json = res.json()
-    st.subheader("Generated Campaign")
-    st.markdown(res_json["campaign_text"])
+    if not prompt.strip():
+        st.warning("Por favor, ingresa una descripción de tu marca.")
+    else:
+        with st.spinner("Generando campaña..."):
+            try:
+                res = requests.post(url=endpoint, data=json.dumps(input))
+                res.raise_for_status()
+                res_json = res.json()
+                st.subheader("Generated Campaign")
+                st.markdown(res_json["campaign_text"])
+            except requests.exceptions.RequestException as e:
+                st.error(f"Error al conectar con el servidor: {e}")
+            except json.JSONDecodeError:
+                st.error("Error al procesar la respuesta del servidor.")
+            except KeyError:
+                st.error("Respuesta inesperada del servidor.")
